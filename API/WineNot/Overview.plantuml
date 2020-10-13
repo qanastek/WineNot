@@ -1,0 +1,66 @@
+@startuml Overview
+
+class Wine #LightSkyBlue {
+    + id: Number
+    + name: String
+    + description: Text
+    + color: WineColors
+    + vintage: Short
+    + wineMaker: String
+    + country: String
+    + region: String
+    + appellation: String
+    + price: Double
+    + label: Image
+}
+Wine o-- WineColors
+note top of Wine
+Insert by the admin
+end note
+
+class Review #LightSkyBlue {
+    + id: Number
+    + name: String
+    + description: Text
+    + stars: Integer
+    + creation: DateTime
+    + last_edit: DateTime
+    + author: User
+    + wine: Wine
+}
+Review o-- Wine
+
+class Comment #LightSkyBlue {
+    + id: Number
+    + content: String
+    + creation: DateTime
+    + last_edit: DateTime
+    + author: User
+    + wine: Wine
+}
+Comment o-- Wine
+Comment o-- User
+
+class User #LightSkyBlue {
+    + id: Number
+    + username: String
+    + first_name: String
+    + last_name: String
+    + password: String
+    + email: String
+    + last_login: DateTime
+    + date_joined: DateTime
+    + is_superuser: Boolean
+    + is_staff: Boolean
+    + is_active: Boolean
+    + picture: Image
+}
+
+Enum WineColors {
+    "Rouge",
+    "Rosé",
+    "Blanc",
+    "Champagne",
+}
+
+@enduml

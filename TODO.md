@@ -1,5 +1,9 @@
 # TODO
 
+## Generale
+
+- [ ] Make the UML
+
 ## API
 
 - [x] Generate the Django base project

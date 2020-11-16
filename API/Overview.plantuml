@@ -1,6 +1,7 @@
 @startuml Overview
 
-class Wine #LightSkyBlue {
+' #LightSkyBlue
+class Wine {
     + id: Number
     + name: String
     + description: Text
@@ -18,7 +19,7 @@ note top of Wine
 Insert by the admin
 end note
 
-class Review #LightSkyBlue {
+class Review {
     + id: Number
     + name: String
     + description: Text
@@ -30,7 +31,7 @@ class Review #LightSkyBlue {
 }
 Review o-- Wine
 
-class Comment #LightSkyBlue {
+class Comment {
     + id: Number
     + content: String
     + creation: DateTime
@@ -41,7 +42,7 @@ class Comment #LightSkyBlue {
 Comment o-- Wine
 Comment o-- User
 
-class User #LightSkyBlue {
+class User {
     + id: Number
     + username: String
     + first_name: String

@@ -6,3 +6,4 @@
   * admin
 * Run: `python3 manage.py runserver`
 * Ce rendre sur: `http://127.0.0.1:8000/admin/`
+  * admin : admin

@@ -1,0 +1,104 @@
+<%= form_with(model: wine, local: true) do |form| %>
+  <% if wine.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(wine.errors.count, "error") %> prohibited this wine from being saved:</h2>
+
+      <ul>
+        <% wine.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <%
+=begin%>
+ <div class="field">
+    <%= form.label :wine_color_id %>
+    <%= form.text_field :wine_color_id %>
+  </div> 
+<%
+=end%>
+  
+  <div class="field">
+    <%= fields_for(WineColor.all) do |ab| %>
+
+      <%= ab.label "All WineColor" %>
+      
+      <%= collection_select(
+        :wine,
+        :wine_color_id,
+        WineColor.all,
+        :id,
+        :name,
+        prompt: true
+      ) %>
+
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= form.label :vintage %>
+    <%= form.number_field :vintage %>
+  </div>
+
+  <%
+=begin%>
+ <div class="field">
+    <%= form.label :wine_maker_id %>
+    <%= form.text_field :wine_maker_id %>
+  </div> 
+<%
+=end%>
+
+  <div class="field">
+    <%= fields_for(WineMaker.all) do |ab| %>
+
+      <%= ab.label "All WineMaker" %>
+      
+      <%= collection_select(
+        :wine,
+        :wine_maker_id,
+        WineMaker.all,
+        :id,
+        :name,
+        prompt: true
+      ) %>
+
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= form.label :country %>
+    <%= form.text_field :country %>
+  </div>
+
+  <div class="field">
+    <%= form.label :region %>
+    <%= form.text_field :region %>
+  </div>
+
+  <div class="field">
+    <%= form.label :appellation %>
+    <%= form.text_field :appellation %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.text_field :price %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

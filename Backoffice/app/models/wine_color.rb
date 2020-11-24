@@ -1,0 +1,2 @@
+class WineColor < ApplicationRecord
+end

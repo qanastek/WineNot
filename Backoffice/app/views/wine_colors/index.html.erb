@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Wine Colors</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @wine_colors.each do |wine_color| %>
+      <tr>
+        <td><%= wine_color.name %></td>
+        <td><%= link_to 'Show', wine_color %></td>
+        <td><%= link_to 'Edit', edit_wine_color_path(wine_color) %></td>
+        <td><%= link_to 'Destroy', wine_color, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Wine Color', new_wine_color_path %>

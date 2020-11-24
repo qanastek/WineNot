@@ -1,48 +1,62 @@
 @startuml Overview
 
 ' #LightSkyBlue
-class Wine {
-    + id: Number
+' rails generate scaffold Wine name:string description:text 
+' wine_color:references vintage:integer wine_maker:references country:string
+' region:string appellation:string price:decimal
+class Wine #LightCoral {
+    + id: Integer
     + name: String
     + description: Text
-    + color: WineColors
-    + vintage: Short
-    + wineMaker: String
+    + color: WineColor
+    + vintage: Integer
+    + wineMaker: WineMaker
     + country: String
     + region: String
     + appellation: String
     + price: Double
     + label: Image
 }
-Wine o-- WineColors
+Wine o-- WineColor
+Wine o-- WineMaker
 note top of Wine
 Insert by the admin
 end note
 
+' rails generate scaffold Review name:string description:text
+' stars:integer createdAt:datetime lastEdit:datetime user:references
+' wine:references
 class Review {
     + id: Number
     + name: String
     + description: Text
     + stars: Integer
-    + creation: DateTime
-    + last_edit: DateTime
-    + author: User
+    + createdAt: DateTime
+    + lastEdit: DateTime
+    + user: User
     + wine: Wine
 }
+Review o-- User
 Review o-- Wine
 
+' rails generate scaffold Comment content:text createdAt:datetime
+' lastEdit:datetime user:references wine:references
 class Comment {
     + id: Number
     + content: String
     + creation: DateTime
     + last_edit: DateTime
-    + author: User
-    + wine: Wine
+    + user: User
+    + wine: Review
 }
-Comment o-- Wine
 Comment o-- User
+Comment o-- Review
 
-class User {
+' rails generate scaffold User username:string:uniq first_name:string
+' last_name:string password:string email:string:uniq last_login:datetime
+' date_joined:datetime is_superuser:boolean is_staff:boolean
+' is_active:boolean
+class User #LightCoral {
     + id: Number
     + username: String
     + first_name: String
@@ -57,11 +71,17 @@ class User {
     + picture: Image
 }
 
-Enum WineColors {
+' rails generate scaffold WineColor name:string
+Enum WineColor {
     "Rouge",
     "Rosé",
     "Blanc",
     "Champagne",
+}
+
+' rails generate scaffold WineMaker name:string
+Enum WineMaker {
+    "CELLIER DES PRINCES",
 }
 
 @enduml

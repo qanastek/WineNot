@@ -1,0 +1,22 @@
+<%= form_with(model: wine_maker, local: true) do |form| %>
+  <% if wine_maker.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(wine_maker.errors.count, "error") %> prohibited this wine_maker from being saved:</h2>
+
+      <ul>
+        <% wine_maker.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyText
+  stars: 1
+  createdAt: 2020-11-24 01:43:37
+  lastEdit: 2020-11-24 01:43:37
+  user: one
+  wine: one
+
+two:
+  name: MyString
+  description: MyText
+  stars: 1
+  createdAt: 2020-11-24 01:43:37
+  lastEdit: 2020-11-24 01:43:37
+  user: two
+  wine: two

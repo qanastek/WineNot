@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyText
+  wine_color: one
+  vintage: 1
+  wine_maker: one
+  country: MyString
+  region: MyString
+  appellation: MyString
+  price: 9.99
+
+two:
+  name: MyString
+  description: MyText
+  wine_color: two
+  vintage: 1
+  wine_maker: two
+  country: MyString
+  region: MyString
+  appellation: MyString
+  price: 9.99

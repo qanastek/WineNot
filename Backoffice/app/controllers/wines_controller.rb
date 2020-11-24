@@ -1,4 +1,5 @@
 class WinesController < ApplicationController
+  before_action :authenticate_user, only: [:auth]
   before_action :set_wine, only: [:show, :edit, :update, :destroy]
 
   # GET /wines

@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  protect_from_forgery
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
@@ -69,6 +70,6 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:username, :first_name, :last_name, :password, :email, :last_login, :date_joined, :is_superuser, :is_staff)
+      params.require(:user).permit(:username, :password, :email)
     end
 end

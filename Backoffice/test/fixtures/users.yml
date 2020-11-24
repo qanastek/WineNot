@@ -2,22 +2,10 @@
 
 one:
   username: MyString
-  first_name: MyString
-  last_name: MyString
-  password: MyString
+  password_digest: MyString
   email: MyString
-  last_login: 2020-11-24 01:43:24
-  date_joined: 2020-11-24 01:43:24
-  is_superuser: false
-  is_staff: false
 
 two:
   username: MyString
-  first_name: MyString
-  last_name: MyString
-  password: MyString
+  password_digest: MyString
   email: MyString
-  last_login: 2020-11-24 01:43:24
-  date_joined: 2020-11-24 01:43:24
-  is_superuser: false
-  is_staff: false

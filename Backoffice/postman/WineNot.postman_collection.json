@@ -1,0 +1,120 @@
+{
+	"info": {
+		"_postman_id": "ac363e51-3442-4ca4-b53b-e11695b8f4fd",
+		"name": "WineNot",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/user_token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"auth\": {\r\n        \"username\": \"test\",\r\n        // \"email\": \"test1@test.test\",\r\n        \"password\": \"0123456789\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/user_token",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"user_token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/users",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/users.json",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"users.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/users/create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user\": {\r\n        \"username\": \"test1\",\r\n        \"email\": \"test1@test.test\",\r\n        \"password\": \"0123456789\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/users.json",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"users.json"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "b779da7b-33a7-4b94-9843-8c56af3ceeaf",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "9038badf-20e5-4c2e-9d49-a82dab491e25",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "d6aa3096-e101-475b-8d6a-9bbb65e54116",
+			"key": "base_url",
+			"value": "http://localhost:3000"
+		}
+	],
+	"protocolProfileBehavior": {}
+}

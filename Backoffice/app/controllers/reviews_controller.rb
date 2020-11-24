@@ -15,6 +15,8 @@ class ReviewsController < ApplicationController
   # GET /reviews/new
   def new
     @review = Review.new
+    @review.createdAt = Time.now
+    @review.lastEdit = Time.now
   end
 
   # GET /reviews/1/edit

@@ -26,7 +26,9 @@
     <%= form.number_field :stars %>
   </div>
 
-  <div class="field">
+  <%
+=begin%>
+ <div class="field">
     <%= form.label :createdAt %>
     <%= form.datetime_select :createdAt %>
   </div>
@@ -35,18 +37,67 @@
     <%= form.label :lastEdit %>
     <%= form.datetime_select :lastEdit %>
   </div>
+  
+  <%= review.createdAt %>
+  <br>
+  <%= review.lastEdit %> 
+<%
+=end%>
 
-  <div class="field">
+  <%
+=begin%>
+ <div class="field">
     <%= form.label :user_id %>
     <%= form.text_field :user_id %>
+  </div> 
+<%
+=end%>
+  
+  <div class="field">
+    <%= fields_for(User.all) do |ab| %>
+
+      <%= form.label :user_id %>
+      
+      <%= collection_select(
+        :review,
+        :user_id,
+        User.all,
+        :id,
+        :name,
+        prompt: true
+      ) %>
+
+    <% end %>
   </div>
 
-  <div class="field">
+  <%
+=begin%>
+ <div class="field">
     <%= form.label :wine_id %>
     <%= form.text_field :wine_id %>
+  </div> 
+<%
+=end%>
+  
+  <div class="field">
+    <%= fields_for(Wine.all) do |ab| %>
+
+      <%= form.label :wine_id %>
+      
+      <%= collection_select(
+        :review,
+        :wine_id,
+        Wine.all,
+        :id,
+        :name,
+        prompt: true
+      ) %>
+
+    <% end %>
   </div>
 
   <div class="actions">
     <%= form.submit %>
   </div>
+
 <% end %>

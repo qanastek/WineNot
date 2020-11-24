@@ -6,43 +6,13 @@
 </p>
 
 <p>
-  <strong>First name:</strong>
-  <%= @user.first_name %>
-</p>
-
-<p>
-  <strong>Last name:</strong>
-  <%= @user.last_name %>
-</p>
-
-<p>
   <strong>Password:</strong>
-  <%= @user.password %>
+  <%= @user.password_digest %>
 </p>
 
 <p>
   <strong>Email:</strong>
   <%= @user.email %>
-</p>
-
-<p>
-  <strong>Last login:</strong>
-  <%= @user.last_login %>
-</p>
-
-<p>
-  <strong>Date joined:</strong>
-  <%= @user.date_joined %>
-</p>
-
-<p>
-  <strong>Is superuser:</strong>
-  <%= @user.is_superuser %>
-</p>
-
-<p>
-  <strong>Is staff:</strong>
-  <%= @user.is_staff %>
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |

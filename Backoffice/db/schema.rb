@@ -40,14 +40,8 @@ ActiveRecord::Schema.define(version: 2020_11_24_004344) do
 
   create_table "users", force: :cascade do |t|
     t.string "username"
-    t.string "first_name"
-    t.string "last_name"
-    t.string "password"
+    t.string "password_digest"
     t.string "email"
-    t.datetime "last_login"
-    t.datetime "date_joined"
-    t.boolean "is_superuser"
-    t.boolean "is_staff"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true

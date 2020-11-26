@@ -1,15 +1,15 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  content: MyText
+  content: Merci beaucoup
   createdAt: 2020-11-24 01:43:44
   lastEdit: 2020-11-24 01:43:44
   user: one
   wine: one
 
 two:
-  content: MyText
+  content: C'est exagérer
   createdAt: 2020-11-24 01:43:44
   lastEdit: 2020-11-24 01:43:44
   user: two
-  wine: two
+  wine: one

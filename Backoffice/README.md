@@ -1,6 +1,7 @@
 # Commands
 
 * Run the server: `rails s`
+* Load Fixures: `rake db:fixtures:load`
 
 # README
 

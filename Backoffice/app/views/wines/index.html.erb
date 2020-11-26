@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>ID</th>
       <th>Name</th>
       <th>Description</th>
       <th>Wine color</th>
@@ -21,6 +22,7 @@
   <tbody>
     <% @wines.each do |wine| %>
       <tr>
+        <td><%= wine.id %></td>
         <td><%= wine.name %></td>
         <td><%= wine.description %></td>
         <td><%= wine.wine_color_id %></td>

@@ -26,14 +26,56 @@
     <%= form.datetime_select :lastEdit %>
   </div>
 
-  <div class="field">
+  <%
+=begin%>
+ <div class="field">
     <%= form.label :user_id %>
     <%= form.text_field :user_id %>
-  </div>
+  </div> 
+<%
+=end%>
 
   <div class="field">
+    <%= fields_for(User.all) do |ab| %>
+
+    <%= form.label :user_id %>
+      
+      <%= collection_select(
+        :comment,
+        :user_id,
+        User.all,
+        :id,
+        :name,
+        prompt: true
+      ) %>
+
+    <% end %>
+  </div>
+
+  <%
+=begin%>
+ <div class="field">
     <%= form.label :wine_id %>
     <%= form.text_field :wine_id %>
+  </div>   
+<%
+=end%>
+
+  <div class="field">
+    <%= fields_for(Wine.all) do |ab| %>
+
+    <%= form.label :wine_id %>
+      
+      <%= collection_select(
+        :comment,
+        :wine_id,
+        Wine.all,
+        :id,
+        :name,
+        prompt: true
+      ) %>
+
+    <% end %>
   </div>
 
   <div class="actions">

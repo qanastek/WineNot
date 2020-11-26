@@ -1,8 +1,11 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:winenot/Routes/Explore.dart';
+import 'package:winenot/Routes/MyWines.dart';
 import 'package:winenot/Routes/PreviewScreen.dart';
 import 'package:winenot/Routes/TakePictureScreen.dart';
+import 'package:winenot/Utils/MyColors.dart';
 
 class Home extends StatefulWidget {
 
@@ -16,19 +19,13 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
+  // Current view index
   int _selectedIndex = 0;
 
-  static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-
+  // Vues
   static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Home',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 1: Business',
-      style: optionStyle,
-    ),
+    Explore(),
+    MyWines(),
   ];
 
   @override
@@ -36,12 +33,14 @@ class _HomeState extends State<Home> {
     super.initState();
   }
 
+  // On tap menu
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
   }
 
+  // Take a picture of the wine
   void _pictureWine() {
 
     Navigator.push(
@@ -64,14 +63,10 @@ class _HomeState extends State<Home> {
       ),
 
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-
-          ],
-        ),
+        child: _widgetOptions.elementAt(_selectedIndex),
       ),
 
+      // Floating button
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         onPressed: _pictureWine,
@@ -79,15 +74,16 @@ class _HomeState extends State<Home> {
         child: Icon(Icons.camera_alt),
       ),
 
-
+      // Nav bar
       bottomNavigationBar: BottomAppBar(
         shape: CircularNotchedRectangle(),
-        color: Colors.red,
+        color: MyColors.settingsSecondary,
         notchMargin: 7,
         clipBehavior: Clip.antiAlias,
         child: BottomNavigationBar(
           items: [
 
+            // Explore btn
             BottomNavigationBarItem(
               icon: Icon(
                   Icons.search
@@ -95,6 +91,7 @@ class _HomeState extends State<Home> {
               title: Text("Explore"),
             ),
 
+            // My wines btn
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.person

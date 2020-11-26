@@ -13,6 +13,13 @@ class UsersController < ApplicationController
   def show
   end
 
+  # GET /users/1/reviews
+  # GET /users/1/reviews.json
+  def reviews
+    @reviews = Review.joins(:user).where( :users => {:id => params[:id]})
+    render json: @reviews
+  end
+
   # GET /users/new
   def new
     @user = User.new

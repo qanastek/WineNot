@@ -13,6 +13,13 @@ class WinesController < ApplicationController
   def show
   end
 
+  # POST /wines/1/reviews
+  # POST /wines/1/reviews.json
+  def reviews
+    @reviews = Review.where(wine: params[:id]).order(updated_at: :desc)
+    render json: @reviews
+  end
+
   # GET /wines/new
   def new
     @wine = Wine.new

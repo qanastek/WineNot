@@ -1,19 +1,19 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  description: MyText
-  stars: 1
+  name: Super vin 1
+  description: Il s'agit d'un super vin de model 1
+  stars: 5
   createdAt: 2020-11-24 01:43:37
   lastEdit: 2020-11-24 01:43:37
-  user: one
+  user: admin
   wine: one
 
 two:
-  name: MyString
-  description: MyText
+  name: Horrible vin
+  description: Le vin est horrible je ne le recommande pas
   stars: 1
   createdAt: 2020-11-24 01:43:37
   lastEdit: 2020-11-24 01:43:37
-  user: two
-  wine: two
+  user: user
+  wine: one

@@ -13,6 +13,21 @@ class MyColors {
   static const Color gradientPrimary = Color(0xff8b1119);
   static const Color gradientSecondary = Color(0xffa8322e);
 
+  static const Map<int, Color> colorCodes = {
+    50: Color(0xffd08b8f),
+    100: Color(0xffca8084),
+    200: Color(0xffc6777c),
+    300: Color(0xffc06c71),
+    400: Color(0xffba6066),
+    500: Color(0xffb4545a),
+    600: Color(0xffaf4b51),
+    700: Color(0xffab454b),
+    800: Color(0xffa4373e),
+    900: Color(0xffa33037),
+  };
+
+  MaterialColor mainColor = MaterialColor(0xffa4373e, MyColors.colorCodes);
+
   // Login
   static const Color loginText = Color(0xFFf1f1f1);
   static const Color loginIcons = Color(0xFFf1f1f1);

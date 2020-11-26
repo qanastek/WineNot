@@ -1,0 +1,19 @@
+@startuml Architecture
+
+cloud       cloud1       as "cloud" {
+file f3
+
+database    db1    as "database" {
+file f4
+}
+
+queue Redis {
+}
+
+}
+
+database    db2    as "database" {
+file f5
+}
+
+@enduml

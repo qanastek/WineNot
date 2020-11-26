@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 
@@ -61,19 +62,31 @@ class _LoginState extends State<Login> {
     // Check connection
     if (_loginFormKey.currentState.validate()) {
 
-      // Navigate to the home
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => Home(title: 'WineNot')),
-      );
+      var body = json.encode({
+        "auth": {
+          "username": _username.text,
+          "password": _password.text
+        }
+      });
 
       // Send HTTP request to the server
-      final http.Response response = await http.get(
-          Endpoints.logon(_username.text, _password.text)
+      final http.Response response = await http.post(
+          Endpoints.logon(),
+          headers: {"Content-Type": "application/json"},
+          body: body
       );
 
+      print("${response.statusCode}");
+      print("${response.body}");
+
+      // final http.Response res = await http.get(
+      //     Endpoints.wines()
+      // );
+      //
+      // print("${res.body}");
+
       // It's ok ?
-      if (response.statusCode == 200) {
+      if (response.statusCode == 201) {
 
           // Navigate to the home
           Navigator.pushReplacement(

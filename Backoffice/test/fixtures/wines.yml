@@ -1,23 +1,36 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  description: MyText
-  wine_color: one
-  vintage: 1
+  name: CHATEAUNEUF-DU-PAPE 2018 - CELLIER DES PRINCES
+  description: Nez de fiuit rouges et noirs murs, d'épices douces, de cacao, de cuir et de moka.
+  wine_color: rouge
+  vintage: 2018
   wine_maker: one
-  country: MyString
-  region: MyString
-  appellation: MyString
-  price: 9.99
+  country: France
+  region: Vaucluse
+  appellation: Châteauneuf-du-Pape AOP
+  price: 19.99
 
 two:
-  name: MyString
-  description: MyText
+  name: SAINT JOSEPH 2017 - E. GUIGAL
+  description: Nez puissants à dominantes de fruits rouges et d'arômes délicats du bois.
   wine_color: two
-  vintage: 1
+  vintage: 2017
   wine_maker: two
-  country: MyString
-  region: MyString
-  appellation: MyString
-  price: 9.99
+  country: France
+  region: Bourgogne
+  appellation: Saint-Joseph AOC
+  price: 18.50
+
+<% 200.times do |i| %>
+post_<%= i %>:
+  name: SAINT JOSEPH 2017 - E. GUIGAL N°<%= i %>
+  description: Nez puissants à dominantes de fruits rouges et d'arômes délicats du bois.
+  wine_color: two
+  vintage: 2017
+  wine_maker: two
+  country: France
+  region: Bourgogne
+  appellation: Saint-Joseph AOC
+  price: 18.50
+<% end %>

@@ -55,7 +55,7 @@ class WineInformationState extends State<WineInformation> {
 
                     // Wine image from the web
                     Image.network(
-                      widget.wine.label,
+                      "https://www.twil.fr/media/catalog/product/cache/1/image/1000x1000/a8c876702c6cb649fba7cbed6b6e2e91/0/0/00403fcd4106770fd0dd21f493df27f6.jpeg",
                       height: 300,
                       width: 300,
                       fit: BoxFit.fitHeight,
@@ -69,7 +69,12 @@ class WineInformationState extends State<WineInformation> {
               Container(
                 color: Colors.transparent,
                 child: Container(
-                  padding: EdgeInsets.all(25),
+                  padding: EdgeInsets.only(
+                      top: 25,
+                      bottom: 25,
+                      left: 25,
+                      right: 25
+                  ),
                   decoration: new BoxDecoration(
                     color: MyColors.settingsSecondary,
                       // color: Color(0xffC2552B),
@@ -103,7 +108,7 @@ class WineInformationState extends State<WineInformation> {
                       // Stars
                       Padding(
                         padding: EdgeInsets.only(
-                            top: 7,
+                          top: 7,
                         ),
                         child: Row(
                           children: [
@@ -145,7 +150,7 @@ class WineInformationState extends State<WineInformation> {
                       Padding(
                         padding: EdgeInsets.only(
                           top: 4,
-                          bottom: 10,
+                          bottom: 15,
                         ),
                         child: Text(
                           "125 Ratings",
@@ -170,7 +175,7 @@ class WineInformationState extends State<WineInformation> {
                       // Stats & Food Matching title
                       Padding(
                         padding: EdgeInsets.only(
-                          top: 10,
+                          top: 20,
                           bottom: 10,
                         ),
                         child: Text(
@@ -214,30 +219,6 @@ class WineInformationState extends State<WineInformation> {
                           ),
                         )).toList(),
                       ),
-
-                      // Text(
-                      //   "vintage: ${widget.wine.vintage}",
-                      // ),
-
-                      // Text(
-                      //   "wineMaker: ${widget.wine.wineMaker}",
-                      // ),
-
-                      // Text(
-                      //   "country: ${widget.wine.country}",
-                      // ),
-                      //
-                      // Text(
-                      //   "region: ${widget.wine.region}",
-                      // ),
-
-                      // Text(
-                      //   "Name: ${widget.wine.name}",
-                      // ),
-                      //
-                      // Text(
-                      //   "price: ${widget.wine.price}",
-                      // ),
 
                     ],
                   ),

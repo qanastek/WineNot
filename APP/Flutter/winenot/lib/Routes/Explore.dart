@@ -75,6 +75,7 @@ class _ExploreState extends State<Explore> {
   Widget build(BuildContext context) {
 
     return Container(
+        color: Color(0xffF4F2EC),
         child: GridView.count(
           crossAxisCount: 2,
           childAspectRatio: 1,
@@ -86,10 +87,19 @@ class _ExploreState extends State<Explore> {
           children: List.generate(wines.length, (index) {
             return GestureDetector(
               onTap: () {
+
                 print("salut");
+
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => WineInformation(
+                      wine: wines[index],
+                    ))
+                );
               },
               child: GridTile(
                 child: Card(
+                  // color: Color(0xffF8EFE5),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                   elevation: 1.5,
                   child: Column(
@@ -97,23 +107,43 @@ class _ExploreState extends State<Explore> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
 
-                      /// Icon
+                      // Wine image
                       Container(
-                        margin: const EdgeInsets.only(
-                          top: 20,
-                          bottom: 10,
-                        ),
-                        decoration: new BoxDecoration(
-                            color: Colors.white70,
-                            borderRadius: new BorderRadius.all(Radius.circular(50))
-                        ),
-                        padding: const EdgeInsets.all(20),
-                        child: Icon(
-                          Icons.account_circle,
-                          color: Colors.black87,
-                          size: 25,
+                        color: Colors.white,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+
+                            // Wine image from the web
+                            Image.network(
+                              "https://www.twil.fr/media/catalog/product/cache/1/image/1000x1000/a8c876702c6cb649fba7cbed6b6e2e91/0/0/00403fcd4106770fd0dd21f493df27f6.jpeg",
+                              height: 100,
+                              width: 100,
+                              fit: BoxFit.fitHeight,
+                            ),
+
+                          ],
                         ),
                       ),
+
+                      /// Icon
+                      // Container(
+                      //   margin: const EdgeInsets.only(
+                      //     top: 20,
+                      //     bottom: 10,
+                      //   ),
+                      //   decoration: new BoxDecoration(
+                      //       color: Colors.white70,
+                      //       borderRadius: new BorderRadius.all(Radius.circular(50))
+                      //   ),
+                      //   padding: const EdgeInsets.all(20),
+                      //   child: Icon(
+                      //     Icons.account_circle,
+                      //     color: Colors.black87,
+                      //     size: 25,
+                      //   ),
+                      // ),
 
                       /// Title
                       Padding(

@@ -142,7 +142,6 @@ class _PreviewScreenState extends State<PreviewScreen> {
                                         region: "Vaucluse",
                                         price: "16.70",
                                         country: "France",
-                                        label: "https://www.twil.fr/media/catalog/product/cache/1/image/1000x1000/a8c876702c6cb649fba7cbed6b6e2e91/0/0/00403fcd4106770fd0dd21f493df27f6.jpeg",
                                         description: "Cette cuvée 100% Gamay est issue d'une parcelle de vieilles vignes âgées de plus de 80 ans. Le vin est élevé 20 mois dans des fûts de chêne de l’Allier. C’est un vin très expressif avec une belle longueur en bouche. Une cuvée d’exception.",
                                       ),
                                     ))

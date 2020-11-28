@@ -62,6 +62,8 @@ class _LoginState extends State<Login> {
     // Check connection
     if (_loginFormKey.currentState.validate()) {
 
+      print("ici");
+
       var body = json.encode({
         "auth": {
           "username": _username.text,
@@ -69,12 +71,16 @@ class _LoginState extends State<Login> {
         }
       });
 
+      print("la");
+
       // Send HTTP request to the server
       final http.Response response = await http.post(
           Endpoints.logon(),
           headers: {"Content-Type": "application/json"},
           body: body
       );
+
+      print("response");
 
       print("${response.statusCode}");
       print("${response.body}");
@@ -154,11 +160,11 @@ class _LoginState extends State<Login> {
                         bottom: 0.0
                     ),
                     child: Text(
-                      "CERI",
+                      "WINE",
                       style: TextStyle(
                         color: MyColors.loginBrandStart,
                         fontWeight: FontWeight.w900,
-                        fontSize: 55,
+                        fontSize: 90,
                       ),
                     ),
                   ),
@@ -170,7 +176,7 @@ class _LoginState extends State<Login> {
                         bottom: 25.0
                     ),
                     child: Text(
-                      "Wine",
+                      "NOT",
                       style: TextStyle(
                         color: MyColors.loginBrandEnd,
                         fontWeight: FontWeight.w900,

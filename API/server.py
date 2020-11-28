@@ -1,5 +1,8 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request
 from datetime import datetime
+import base64
+from PIL import Image
+import io
 
 import random
 
@@ -25,6 +28,38 @@ def hello_world():
         'Message': "Bonjour"
     })
 
-@app.route('/wines/scan')
-def scanner():
-    return jsonify(chateauNeuf)
+@app.route('/scan', methods=['POST']) 
+def upload_base64_file(): 
+    """ 
+    Upload image with base64 format and get car make model and year 
+    response 
+    """
+
+    # Parse the JSON body
+    data = request.get_json()
+
+    if data is None:
+        print("No valid request body, json missing!")
+        return jsonify({'error': 'No valid request body, json missing!'})
+    else:
+
+        # Get the base64 image
+        img_data = data['img']
+
+        # Convert the b64 image into a png file
+        convert_and_save(img_data)
+
+        # Return the corresponding object
+        return jsonify(chateauNeuf)
+
+def convert_and_save(b64_string):
+
+    image = Image.frombytes('RGB',(256,256), base64.b64decode(b64_string))
+    image.save("images/foo.png")
+    
+    # # Open a stream for a png file
+    # with open("images/imageToSave.png", "wb") as fh:
+
+    #     # Decode the b64 image into the file
+    #     fh.write(base64.b64decode(b64_string))
+    #     # fh.write(base64.decodebytes(b64_string.encode()))

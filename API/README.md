@@ -18,6 +18,11 @@
     * migrate/create_wines
     * models/wines
 
+# Dependencies
+
+* All python dependencies: `pip install -r requirements.txt`
+* French language pack for teh Tesseract OCR: `sudo apt-get install tesseract-ocr-fra`
+
 # TODO
 
 * [Cheatsheet](https://gist.github.com/cdesch/2f8de645cad1d83aa251c0a20b0f7097)

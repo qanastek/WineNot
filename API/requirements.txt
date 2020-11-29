@@ -1,0 +1,6 @@
+Flask
+pybase64
+Pillow
+opencv-python
+pytesseract
+pylev

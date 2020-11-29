@@ -1,0 +1,17 @@
+FROM alpine
+
+COPY * /src/ 
+
+RUN apk --update add build-base nodejs tzdata postgresql-dev postgresql-client libxslt-dev libxml2-dev imagemagick ruby-full
+
+WORKDIR /src/
+
+RUN gem install bundler
+
+RUN bundle config --global silence_root_warning 1
+
+RUN gem install rails
+
+RUN bundle install
+
+CMD ["sh","/src/run.sh"]

@@ -33,6 +33,7 @@ dependencies:
   path: ^1.7.0
   camera: ^0.5.8+8
   share: ^0.6.5+2
+  flutter_launcher_icons: ^0.8.1
 
   # Non Official
   permission_handler: ^5.0.1+1
@@ -43,6 +44,12 @@ dev_dependencies:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
+
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icon/icon.png"
 
 # The following section is specific to Flutter.
 flutter:

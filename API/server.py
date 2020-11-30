@@ -3,6 +3,7 @@ from datetime import datetime
 import base64
 from PIL import Image
 import io
+import numpy as np
 
 import cv2 
 import pytesseract
@@ -15,88 +16,100 @@ app = Flask(__name__)
 chateauNeuf = {
     'id': random.randint(1,999999),
     'name': "CHATEAUNEUF-DU-PAPE 2018 - CELLIER DES PRINCES",
-    'color': "Vin Rouge",
-    'vintage': "2018",
-    'wineMaker': "CELLIER DES PRINCES",
+    'wine_color_id': "Vin Rouge",
+    'vintage': 2018,
+    'wine_maker_id': "CELLIER DES PRINCES",
     'country': "France",
     'region': "Rhône",
-    'appelletion': "Châteauneuf-du-Pape AOP",
+    'appellation': "Châteauneuf-du-Pape AOP",
     'price': "5",
-    'label': "https://delcampe-static.net/img_large/auction/000/244/008/693_001.jpg",
+    'label': "https://www.vinatis.com/51752-thickbox_default/chateauneuf-du-pape-2018-cellier-des-princes.png",
     'description': "Les notes de cerises noires et de prunes se mêlent harmonieusement aux arômes d’épices douces. La bouche flirte entre caresse et volupté, le soyeux des tanins soulignant l'élevage en cuve béton (pas d'élevage en fût). Une finale à la hauteur de son appellation, longue, suave et racée. Voilà un vin encensé par la critique qu'il faut découvrir sans attendre.",
 }
 
 cotesDuRhone = {
     'id': random.randint(1,999999),
     'name': "Les Combes DE SAINT-Sauveur",
-    'color': "Vin Rouge",
-    'vintage': "2014",
-    'wineMaker': "Les Combes DE SAINT-Sauveur",
+    'wine_color_id': "Vin Rouge",
+    'vintage': 2014,
+    'wine_maker_id': "Les Combes DE SAINT-Sauveur",
     'country': "France",
     'region': "Rhône",
-    'appelletion': "Côtes Du Rhône",
+    'appellation': "Côtes Du Rhône",
     'price': "10.0",
-    'label': "https://delcampe-static.net/img_large/auction/000/244/008/693_001.jpg",
+    'label': "https://media.auchan.fr/MEDIASTEP59250876_1200x1200/B2CD/",
     'description': "Les notes de cerises noires et de prunes se mêlent harmonieusement aux arômes d’épices douces. La bouche flirte entre caresse et volupté, le soyeux des tanins soulignant l'élevage en cuve béton (pas d'élevage en fût). Une finale à la hauteur de son appellation, longue, suave et racée. Voilà un vin encensé par la critique qu'il faut découvrir sans attendre.",
 }
 
 wines = [chateauNeuf, cotesDuRhone]
 
 @app.route('/')
-def hello_world():
+def hello_world():    
+    """ 
+    Index page
+    """
+    return jsonify({"hello": "world"})
+    
+def find():
+    """ 
+    Find the corresponding wine
+    """
 
-    # Test levenshtein distance
-    distance = pylev.levenshtein('kitten', 'sitting')
-    print(distance)
+    # Load a picture from the local storage
+    img = cv2.imread("images/tmp.jpg")
 
-    img = cv2.imread('images/lvl1.jpg')
-    img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    # Make it black and white
 
+    img = cv2.cvtColor(np.array(img), cv2.COLOR_BGR2GRAY)
+
+    # Get the height and width of the image
     h, w = img.shape
     # h, w, c = img.shape
 
     # Lower psm is better (3/4)
     custom_config = r'--oem 3 --psm 4'
+
+    # Extract the data from the picture
     details = pytesseract.image_to_data(img, output_type=pytesseract.Output.DICT, config=custom_config, lang='fra')
 
+    # Get the boxes
     total_boxes = len(details['text'])
 
+    # For each boxes
     for sequence_number in range(total_boxes):
 
-        if int(details['conf'][sequence_number]) >30:
+        if int(details['conf'][sequence_number]) > 30:
 
+            # Get the coordinates
             (x, y, w, h) = (details['left'][sequence_number], details['top'][sequence_number], details['width'][sequence_number],  details['height'][sequence_number])
+            
+            # Draw the boxes on the image
             img = cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 2)
 
+    # Content
     parse_text = []
     word_list = []
     last_word = ''
+
+    # For each detections
     for word in details['text']:
-        if word!='':
+        
+        # Not empty
+        if word != '':
             word_list.append(word)
             last_word = word
-        if (last_word!='' and word == '') or (word==details['text'][-1]):
+        
+        if (last_word != '' and word == '') or (word == details['text'][-1]):
             parse_text.append(word_list)
             word_list = []
 
-    print(parse_text)
-
-
-    # For each tokenised wines
-    #   For each info of it such as the name, vintage, wineMaker, country, region and appelation
-    #       Compare the tokenised parse_text with the info
-    #       If the levenshtein distance is under 1
-    #           Then add +1 to the item score
-    #
-    # At the end, take the one which have the highest score
-
+    # Merge all the sublists into one list
     mergedList = []
     for i in parse_text:
         mergedList += i
 
-    print("--------mergedList")
-    print(mergedList)
-
+    # For each element of this list
+    #   Make it lowercase and keep it only if it's longer than one char
     imgFlatten = [t.lower() for t in mergedList if len(t) > 1]
 
     print("--------imgFlatten")
@@ -105,24 +118,22 @@ def hello_world():
     bestDistance = 99999999
     bestWine = None
 
-    print("--------wines")
-
+    # For each wines
     for wine in wines:
 
+        # The current distance of the wine
         currentDistance = 99999999
 
         # Tokenize whole wine
         data = (wine["name"] + " " +
-        wine["vintage"] + " " +
-        wine["wineMaker"] + " " +
+        str(wine["vintage"]) + " " +
+        wine["wine_maker_id"] + " " +
         wine["country"] + " " +
         wine["region"] + " " +
-        wine["appelletion"]).split()
+        wine["appellation"]).split()
 
         # Remove the noise
         data = [d.lower() for d in data if len(d) > 1]
-
-        print(data)
 
         # For each info
         for d in data:
@@ -139,44 +150,34 @@ def hello_world():
         # If we have the current closest wine save it
         if currentDistance < bestDistance:
 
+            # Change the current best distance
             bestDistance = currentDistance
+            # Change the current best wine
             bestWine = wine
-
 
     print('-' * 50)
     print(bestDistance)
     print(bestWine)
     print('-' * 50)
 
-
-    # boxes = pytesseract.image_to_boxes(img)
-    
-    # for b in boxes.splitlines():
-    #     b = b.split(' ')
-    #     img = cv2.rectangle(img, (int(b[1]), h - int(b[2])), (int(b[3]), h - int(b[4])), (0, 255, 0), 2)
-
-    # image_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    # Save the picture
     cv2.imwrite('images/renders/r1.jpg', img)
 
-    # # Adding custom options
-    # custom_config = r'--oem 3 --psm 6'
-    # pytesseract.image_to_string(img, config=custom_config)
-
-    return jsonify({
-        'Message': "Bonjour",
-        "ocr": parse_text
-    })
+    # Return the wine as a JSON object
+    return bestWine
 
 @app.route('/scan', methods=['POST']) 
-def upload_base64_file(): 
+def scan():
     """ 
-    Upload image with base64 format and get car make model and year 
-    response 
+    Upload image with base64 format and get the corresponding wine
     """
+
+    print("/scan")
 
     # Parse the JSON body
     data = request.get_json()
 
+    # If no data found
     if data is None:
         print("No valid request body, json missing!")
         return jsonify({'error': 'No valid request body, json missing!'})
@@ -185,20 +186,18 @@ def upload_base64_file():
         # Get the base64 image
         img_data = data['img']
 
-        # Convert the b64 image into a png file
-        convert_and_save(img_data)
+        # # Convert the b64 image into a jpg file
+        # img = base64.b64decode(str.encode(img_data))
+        
+        # Convert the b64 image into a jpg file and save it
+        with open("images/tmp.jpg", "wb") as fh:
+            fh.write(base64.b64decode(str.encode(img_data)))
+
+        # Find the wine
+        wine = find()
+
+        if not wine:
+            return 404
 
         # Return the corresponding object
-        return jsonify(chateauNeuf)
-
-def convert_and_save(b64_string):
-
-    image = Image.frombytes('RGB',(256,256), base64.b64decode(b64_string))
-    image.save("images/foo.png")
-    
-    # # Open a stream for a png file
-    # with open("images/imageToSave.png", "wb") as fh:
-
-    #     # Decode the b64 image into the file
-    #     fh.write(base64.b64decode(b64_string))
-    #     # fh.write(base64.decodebytes(b64_string.encode()))
+        return jsonify(wine)

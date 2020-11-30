@@ -3,12 +3,14 @@ import 'dart:typed_data';
 import 'package:path/path.dart';
 import 'package:async/async.dart';
 import 'package:http/http.dart' as http;
+import 'dart:io' as Io;
 import 'dart:convert';
 
 import 'package:share/share.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:winenot/Models/Wine.dart';
+import 'package:winenot/Routes/NoWineFound.dart';
 import 'package:winenot/Routes/WineInformations.dart';
 import 'package:winenot/Utils/Endpoints.dart';
 
@@ -23,38 +25,58 @@ class PreviewScreen extends StatefulWidget {
 
 class _PreviewScreenState extends State<PreviewScreen> {
 
-  upload(File imageFile) async {
+  // Upload the picture to the server
+  upload(String imageFile, BuildContext ctx) async {
 
-    // open a bytestream
-    var stream = new http.ByteStream(DelegatingStream.typed(imageFile.openRead()));
-    // get file length
-    var length = await imageFile.length();
+    File img = File(imageFile);
+    final bytes = img.readAsBytesSync();
+    var img64 = base64Encode(bytes);
 
-    // string to uri
-    var uri = Uri.parse(Endpoints.sendImage());
+    print("img64");
+    print(img64);
 
-    // create multipart request
-    var request = new http.MultipartRequest("POST", uri);
-
-    // multipart that takes file
-    var multipartFile = new http.MultipartFile(
-        'file',
-        stream,
-        length,
-        filename: basename(imageFile.path)
-    );
-
-    // add file to multipart
-    request.files.add(multipartFile);
-
-    // send
-    var response = await request.send();
-    print(response.statusCode);
-
-    // listen for response
-    response.stream.transform(utf8.decoder).listen((value) {
-      print(value);
+    print("body");
+    var body = json.encode({
+      "img": "$img64"
     });
+
+    // Send HTTP request to the server
+    print("response to " + Endpoints.sendScan());
+    final http.Response response = await http.post(
+        Endpoints.sendScan(),
+        headers: {"Content-Type": "application/json"},
+        body: body
+    );
+    print(response);
+
+    print("after response");
+    print("${response.statusCode}");
+
+    Navigator.pop(ctx);
+    Navigator.pop(ctx);
+
+    // If founded
+    if(response.statusCode == 200) {
+
+      print("${response.body}");
+
+      // Move to the wine view
+      Navigator.push(
+          ctx,
+          MaterialPageRoute(builder: (context) => WineInformation(
+            wine: Wine.fromJson(jsonDecode(response.body)),
+          ))
+      );
+    } else {
+
+      print("-----------------------------------------------------------------------");
+
+      // Move to no wine found
+      Navigator.push(
+          ctx,
+          MaterialPageRoute(builder: (context) => NoWineFound())
+      );
+    }
   }
 
   Future getBytes () async {
@@ -125,27 +147,7 @@ class _PreviewScreenState extends State<PreviewScreen> {
                                 print(widget.imgPath);
                                 // var img = Image.file(File(widget.imgPath));
                                 // print(img);
-                                this.upload(File(widget.imgPath));
-                                Navigator.pop(context);
-                                Navigator.pop(context);
-
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(builder: (context) => WineInformation(
-                                      wine: Wine(
-                                        id: 70184,
-                                        color: "Rouge",
-                                        name: "Canicule",
-                                        appellation: "Chateauneuf du Pape",
-                                        vintage: 2017,
-                                        wineMaker: "Clos des Papes rouge",
-                                        region: "Vaucluse",
-                                        price: "16.70",
-                                        country: "France",
-                                        description: "Cette cuvée 100% Gamay est issue d'une parcelle de vieilles vignes âgées de plus de 80 ans. Le vin est élevé 20 mois dans des fûts de chêne de l’Allier. C’est un vin très expressif avec une belle longueur en bouche. Une cuvée d’exception.",
-                                      ),
-                                    ))
-                                );
+                                this.upload(widget.imgPath, context);
                               });
                             },
                           ),

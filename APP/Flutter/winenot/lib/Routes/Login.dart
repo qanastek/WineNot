@@ -48,13 +48,42 @@ class _LoginState extends State<Login> {
     });
   }
 
-  // Ask permission for the app
+  // // Ask permission for the app
+  // _askPermissions() async {
+  //   Map<Permission, PermissionStatus> statuses = await [
+  //     Permission.camera,
+  //     Permission.storage,
+  //     Permission.mediaLibrary,
+  //     Permission.photos,
+  //     Permission.accessMediaLocation,
+  //   ].request();
+  // }
+
+
+  // Check permissions for recording audio
   _askPermissions() async {
-    Map<Permission, PermissionStatus> statuses = await [
-      Permission.storage,
-      Permission.camera,
-    ].request();
+
+    // Check permissions
+    if (await Permission.camera.isGranted == false || await Permission.storage.isGranted == false) {
+
+      // If not, display a message
+      SnackBarAction(
+        label: "Need the permission for the camera and storage!",
+        onPressed: () {  },
+      );
+
+      // Requested permissions
+      Map<Permission, PermissionStatus> statuses = await [
+        Permission.camera,
+        Permission.storage
+      ].request();
+
+      return false;
+    }
+
+    return true;
   }
+
 
   // Login button
   void _login() async {

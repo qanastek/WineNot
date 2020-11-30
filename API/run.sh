@@ -1,4 +1,7 @@
-clear
+#! /bin/sh
+
 export FLASK_APP=server.py
+
 export FLASK_ENV=development
-flask run
+
+flask run --host=0.0.0.0

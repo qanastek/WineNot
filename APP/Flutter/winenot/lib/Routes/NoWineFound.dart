@@ -12,27 +12,40 @@ import 'package:winenot/Models/Wine.dart';
 import 'package:winenot/Routes/WineInformations.dart';
 import 'package:winenot/Utils/Endpoints.dart';
 
-class MyWines extends StatefulWidget {
+class NoWineFound extends StatefulWidget {
 
-  const MyWines({
+  const NoWineFound({
     Key key,
   }) : super(key: key);
 
   @override
-  _MyWinesState createState() => _MyWinesState();
+  _NoWineFoundState createState() => _NoWineFoundState();
 }
 
-class _MyWinesState extends State<MyWines> {
+class _NoWineFoundState extends State<NoWineFound> {
 
   static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Colors.black87);
 
   @override
   Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: true,
+        ),
+        body: Container(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
 
-    return Container(
-        child: Text(
-          'Hello, My Wines',
-          style: optionStyle,
+              Container(
+                  child: Text(
+                    'Wine not found',
+                    style: optionStyle,
+                  )
+              ),
+
+            ],
+          ),
         )
     );
   }

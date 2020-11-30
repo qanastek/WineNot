@@ -5,9 +5,9 @@
 
 # Docker commands
 
-* `docker rm firstContainer`
-* `docker build .`
-* `docker run --name firstContainer 7e61ee43228e`
+* `docker rm flask1`
+* `docker build -t winenot/flask:v1.3 .`
+* `docker run --name flask1 7e61ee43228e`
 
 # README
 

@@ -55,7 +55,7 @@ class WineInformationState extends State<WineInformation> {
 
                     // Wine image from the web
                     Image.network(
-                      "https://www.twil.fr/media/catalog/product/cache/1/image/1000x1000/a8c876702c6cb649fba7cbed6b6e2e91/0/0/00403fcd4106770fd0dd21f493df27f6.jpeg",
+                      widget.wine.label ?? "https://www.twil.fr/media/catalog/product/cache/1/image/1000x1000/a8c876702c6cb649fba7cbed6b6e2e91/0/0/00403fcd4106770fd0dd21f493df27f6.jpeg",
                       height: 300,
                       width: 300,
                       fit: BoxFit.fitHeight,

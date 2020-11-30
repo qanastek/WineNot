@@ -4,3 +4,4 @@ Pillow
 opencv-python
 pytesseract
 pylev
+numpy

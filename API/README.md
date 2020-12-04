@@ -29,3 +29,5 @@
 * [Understanding Active Record Associations](https://www.youtube.com/watch?v=5mhuNSkV_vQ&ab_channel=Web-Crunch)
 * [Active Storage For Image Uploads | Ruby on Rails 5.2 Tutorial](https://www.youtube.com/watch?v=fVtGy3QL9xg&ab_channel=Deanin)
 * [collection_select](https://apidock.com/rails/ActionView/Helpers/FormOptionsHelper/collection_select)
+* [Extracting text from images with Tesseract OCR, OpenCV, and Python](https://www.opcito.com/blogs/extracting-text-from-images-with-tesseract-ocr-opencv-and-python/)
+* 

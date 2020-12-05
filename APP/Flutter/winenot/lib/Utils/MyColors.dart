@@ -49,12 +49,6 @@ class MyColors {
   static const Color settingsSubtitle = MyColors.settingsSecondary;
   static const Color settingsMore = MyColors.settingsPrimary;
 
-  // Home colors V3
-  static const Color homeColor1 = Color(0xFF46b4f9);
-  static const Color homeColor2 = Color(0xFF4494e3);
-  static const Color homeColor3 = Color(0xFF4278d0);
-  static const Color homeColor4 = Color(0xFF3f51b5);
-
   // Dark mode
   static const Color darkBackground = Color(0xFF1C1C1C);
   static const Color darkBackgroundRecord = Color(0xFF252525);

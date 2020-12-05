@@ -1,0 +1,26 @@
+<annotation>
+	<folder>non_annotated</folder>
+	<filename>580x580 (80).jpg</filename>
+	<path>D:\Projects\WineNot\LabelExtractorTensorflow\Dataset\non_annotated\580x580 (80).jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>180</width>
+		<height>180</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>label</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>70</xmin>
+			<ymin>69</ymin>
+			<xmax>110</xmax>
+			<ymax>125</ymax>
+		</bndbox>
+	</object>
+</annotation>

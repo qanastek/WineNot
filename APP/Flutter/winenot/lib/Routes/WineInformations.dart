@@ -1,7 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:winenot/Models/Comment.dart';
+import 'package:winenot/Models/Review.dart';
 import 'package:winenot/Models/Wine.dart';
+import 'package:winenot/Routes/AddComment.dart';
+import 'package:winenot/Utils/Endpoints.dart';
 import 'package:winenot/Utils/MyColors.dart';
+import 'package:http/http.dart' as http;
+import 'dart:io' as Io;
+import 'dart:convert';
+import 'dart:io';
+import 'dart:typed_data';
 
 class WineInformation extends StatefulWidget {
 
@@ -18,16 +27,65 @@ class WineInformation extends StatefulWidget {
 
 class WineInformationState extends State<WineInformation> {
 
+  List<Review> reviews = new List<Review>();
+  List<Comment> comments = new List<Comment>();
+
   @override
   void initState() {
     super.initState();
+
+    fetchReviews();
+    fetchComments();
+  }
+
+  fetchReviews() {
+
+    Endpoints.reviews(widget.wine.id).then((response) {
+      setState(() {
+
+        print("${response.body}");
+
+        var arr = jsonDecode(response.body);
+
+        print("arr");
+        print(arr);
+
+        reviews = (json.decode(response.body) as List).map((i) =>
+            Review.fromJson(i)).toList();
+
+        print(reviews);
+
+      });
+    });
+  }
+
+  fetchComments() {
+
+    Endpoints.comments(widget.wine.id).then((response) {
+      setState(() {
+
+        print("${response.body}");
+
+        var arr = jsonDecode(response.body);
+
+        print("arr");
+        print(arr);
+
+        comments = (json.decode(response.body) as List).map((i) =>
+            Comment.fromJson(i)).toList();
+
+        print("comments");
+        print(comments);
+
+      });
+    });
   }
 
   @override
   Widget build(BuildContext context) {
 
     List<List<String>> items =  [
-      [ "Colour:", widget.wine.color.toString() ],
+      [ "Color:", widget.wine.color.toString() ],
       [ "Region:", widget.wine.region.toString() ],
       [ "Country:", widget.wine.country.toString() ],
       [ "Price:", widget.wine.price.toString() + " €" ],
@@ -218,6 +276,202 @@ class WineInformationState extends State<WineInformation> {
                             ],
                           ),
                         )).toList(),
+                      ),
+
+                      // Reviews title
+                      Padding(
+                        padding: EdgeInsets.only(
+                          top: 20,
+                          bottom: 10,
+                        ),
+                        child: Text(
+                          "Reviews",
+                          style: TextStyle(
+                            color: Color(0xffECECEE),
+                            fontWeight: FontWeight.w900,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ),
+
+                      // Reviews
+                      Column(
+                        children: List.generate(reviews.length, (index) {
+                          return GridTile(
+                            child: Card(
+                              color: Colors.transparent,
+                              // color: Color(0xffF8EFE5),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                              elevation: 0,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+
+                                      Text(
+                                        reviews[index].name,
+                                        style: TextStyle(
+                                          color: Color(0xffECECEE),
+                                          fontWeight: FontWeight.w900,
+                                          fontSize: 20,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+
+                                  Row(
+                                    children: [
+
+                                      Text(
+                                        "4,5 ",
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w900,
+                                          color: Color(0xffF9F6F6),
+                                        ),
+                                      ),
+
+                                      Icon(
+                                        Icons.star,
+                                        color: Color(0xffF8CE2E),
+                                      ),
+
+                                      Icon(
+                                        Icons.star,
+                                        color: Color(0xffF8CE2E),
+                                      ),
+
+                                      Icon(
+                                        Icons.star,
+                                        color: Color(0xffF8CE2E),
+                                      ),
+
+                                      Icon(
+                                        Icons.star_half,
+                                        color: Color(0xffF8CE2E),
+                                      ),
+
+                                    ],
+                                  ),
+
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Flexible(
+                                        child: Text(
+                                          reviews[index].description,
+                                          style: TextStyle(
+                                            color: Color(0xffECECEE),
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 18,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+
+                                ],
+                              ),
+                            ),
+                          );
+                        }),
+                      ),
+
+                      // Comments title
+                      Padding(
+                        padding: EdgeInsets.only(
+                            top: 15,
+                            bottom: 10
+                        ),
+                        child: Text(
+                          "Comments",
+                          style: TextStyle(
+                            color: Color(0xffECECEE),
+                            fontWeight: FontWeight.w900,
+                            fontSize: 25,
+                          ),
+                        ),
+                      ),
+
+                      // Comments
+                      Column(
+                        children: List.generate(comments.length, (index) {
+                          return GridTile(
+                            child: Card(
+                              color: Colors.transparent,
+                              // color: Color(0xffF8EFE5),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                              elevation: 0,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+
+                                      Text(
+                                        comments[index].content,
+                                        style: TextStyle(
+                                          color: Color(0xffECECEE),
+                                          fontWeight: FontWeight.w900,
+                                          fontSize: 20,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Flexible(
+                                        child: Text(
+                                          comments[index].updated_at,
+                                          style: TextStyle(
+                                            color: Color(0xffECECEE),
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 18,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+
+                                ],
+                              ),
+                            ),
+                          );
+                        }),
+                      ),
+
+                      // Add comment
+                      OutlineButton(
+                        color: Color(0xffECECEE),
+                        textColor: Color(0xffECECEE),
+                        highlightedBorderColor: Color(0xffECECEE),
+                        borderSide: BorderSide(
+                          color: Color(0xffECECEE),
+                        ),
+                        onPressed: () {
+
+                          print('Add comment');
+
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => AddComment(
+                                wine: widget.wine,
+                              ))
+                          );
+
+                        },
+                        child: Text(
+                          'Add comment',
+                        ),
                       ),
 
                     ],

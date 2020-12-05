@@ -13,3 +13,12 @@ two:
   lastEdit: 2020-11-24 01:43:44
   user: two
   wine: one
+
+<% 200.times do |i| %>
+comments_<%= i %>:
+  content: C'est exagérer
+  createdAt: 2020-11-24 01:43:44
+  lastEdit: 2020-11-24 01:43:44
+  user: two
+  wine: post_<%= i %>
+<% end %>

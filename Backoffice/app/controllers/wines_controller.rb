@@ -13,11 +13,18 @@ class WinesController < ApplicationController
   def show
   end
 
-  # POST /wines/1/reviews
-  # POST /wines/1/reviews.json
+  # GET /wines/1/reviews
+  # GET /wines/1/reviews.json
   def reviews
     @reviews = Review.where(wine: params[:id]).order(updated_at: :desc)
     render json: @reviews
+  end
+
+  # GET /wines/1/comments
+  # GET /wines/1/comments.json
+  def comments
+    @comments = Comment.where(wine: params[:id]).order(updated_at: :desc)
+    render json: @comments
   end
 
   # GET /wines/new

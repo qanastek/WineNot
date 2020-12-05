@@ -17,3 +17,16 @@ two:
   lastEdit: 2020-11-24 01:43:37
   user: user
   wine: one
+
+<% 200.times do |i| %>
+<% 5.times do |j| %>
+review_<%= i %>_<%= j %>:
+  name: Horrible vin
+  description: Le vin est horrible je ne le recommande pas
+  stars: 1
+  createdAt: 2020-11-24 01:43:37
+  lastEdit: 2020-11-24 01:43:37
+  user: admin
+  wine: post_<%= i %>
+<% end %>
+<% end %>

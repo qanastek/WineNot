@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  skip_forgery_protection
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
 
   # GET /comments

@@ -9,7 +9,7 @@
 			"name": "Flask",
 			"item": [
 				{
-					"name": "/upload",
+					"name": "/scan",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -238,6 +238,44 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "/comments",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/wines/980190962/comments.json",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"wines",
+						"980190962",
+						"comments.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/reviews",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/wines/980190962/reviews.json",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"wines",
+						"980190962",
+						"reviews.json"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
@@ -264,12 +302,12 @@
 	],
 	"variable": [
 		{
-			"id": "24476f9e-f104-45f2-b0fe-06cec39d8c0f",
+			"id": "b80398a5-324c-4110-bc40-d87a92bd8eee",
 			"key": "base_url",
 			"value": "http://localhost:3000"
 		},
 		{
-			"id": "f7dbda09-3b74-4622-8cae-5561209e77c5",
+			"id": "fd33471d-22c1-422f-9df3-8c2eb50dab45",
 			"key": "flask_url",
 			"value": "http://127.0.0.1:5000"
 		}

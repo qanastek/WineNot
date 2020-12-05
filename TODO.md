@@ -2,7 +2,7 @@
 
 ## Generale
 
-- [ ] Make the UML
+- [x] Make the UML
 
 ## API
 
@@ -10,13 +10,13 @@
 - [x] Add the admin panel bootstrap
 - [x] Add the admin user
 - [ ] Add the models
-- [ ] Process the picture by sending it to the "AI" process
-- [ ] Make a pipeline for the image
+- [x] Process the picture by sending it to the "AI" process
+- [x] Make a pipeline for the image
 
 ## APP
 
 - [x] Generate the Ionic/Flutter project
 - [x] Take a picture
-- [ ] Send the picture to the server
-- [ ] Process the response content
+- [x] Send the picture to the server
+- [x] Process the response content
 - [x] Display the wine data

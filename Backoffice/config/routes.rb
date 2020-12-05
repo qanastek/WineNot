@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :wines do
     member do
       get :reviews
+      get :comments
     end
   end
   resources :users do

@@ -10,6 +10,11 @@ class Endpoints {
     return "${Endpoints.baseUrl}/user_token";
   }
 
+  // Add comment
+  static String addComment() {
+    return "${Endpoints.baseUrl}/comments.json";
+  }
+
   // Get wines
   static Future wines() async {
     var url = "${Endpoints.baseUrl}/wines.json";
@@ -22,8 +27,15 @@ class Endpoints {
   }
 
   // Get reviews
-  static String reviews(int wineId) {
-    return "${Endpoints.baseUrl}/wines/$wineId.json";
+  static Future reviews(int wineId) async {
+    var url = "${Endpoints.baseUrl}/wines/$wineId/reviews.json";
+    return http.get(url);
+  }
+
+  // Get comments
+  static Future comments(int wineId) async {
+    var url = "${Endpoints.baseUrl}/wines/$wineId/comments.json";
+    return http.get(url);
   }
 
   // Send scanned wine

@@ -54,23 +54,6 @@ class _ExploreState extends State<Explore> {
     super.dispose();
   }
 
-  // void _fetchWines() async {
-  //
-  //   final http.Response res = await http.get(
-  //       Endpoints.wines()
-  //   );
-  //
-  //   print("${res.statusCode}");
-  //   print("${res.body}");
-  //
-  //   // It's ok ?
-  //   if (res.statusCode == 201) {
-  //
-  //     // Load the data in a array
-  //     _data = jsonDecode(res.body);
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
 
@@ -90,12 +73,14 @@ class _ExploreState extends State<Explore> {
 
                 print("salut");
 
+                // Got to the wine description
                 Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => WineInformation(
                       wine: wines[index],
                     ))
                 );
+
               },
               child: GridTile(
                 child: Card(

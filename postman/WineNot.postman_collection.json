@@ -276,6 +276,58 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "/comments",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"content\": \"C'est exagérer\",\r\n    \"createdAt\": \"2020-11-24T01:43:44.000Z\",\r\n    \"lastEdit\": \"2020-11-24T01:43:44.000Z\",\r\n    \"user_id\": 135138680,\r\n    \"wine_id\": 2813381\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/comments.json",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"comments.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/reviews.json",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Horrible vin\",\r\n    \"description\": \"Le vin est horrible je ne le recommande pas\",\r\n    \"stars\": 1,\r\n    \"user_id\": 227792459,\r\n    \"wine_id\": 980190962\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/reviews.json",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"reviews.json"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
@@ -302,12 +354,12 @@
 	],
 	"variable": [
 		{
-			"id": "b80398a5-324c-4110-bc40-d87a92bd8eee",
+			"id": "c687199c-ce97-40a3-bd67-b8ab47e0e8d0",
 			"key": "base_url",
 			"value": "http://localhost:3000"
 		},
 		{
-			"id": "fd33471d-22c1-422f-9df3-8c2eb50dab45",
+			"id": "18a6fcd2-29ec-43d0-b539-53e6c3c92cef",
 			"key": "flask_url",
 			"value": "http://127.0.0.1:5000"
 		}

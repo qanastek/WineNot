@@ -15,6 +15,11 @@ class Endpoints {
     return "${Endpoints.baseUrl}/comments.json";
   }
 
+  // Add review
+  static String addReview() {
+    return "${Endpoints.baseUrl}/reviews.json";
+  }
+
   // Get wines
   static Future wines() async {
     var url = "${Endpoints.baseUrl}/wines.json";

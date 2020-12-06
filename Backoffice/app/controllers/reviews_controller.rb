@@ -1,4 +1,5 @@
 class ReviewsController < ApplicationController
+  skip_forgery_protection
   before_action :set_review, only: [:show, :edit, :update, :destroy]
 
   # GET /reviews

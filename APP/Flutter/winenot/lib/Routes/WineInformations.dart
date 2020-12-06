@@ -4,6 +4,7 @@ import 'package:winenot/Models/Comment.dart';
 import 'package:winenot/Models/Review.dart';
 import 'package:winenot/Models/Wine.dart';
 import 'package:winenot/Routes/AddComment.dart';
+import 'package:winenot/Routes/AddReview.dart';
 import 'package:winenot/Utils/Endpoints.dart';
 import 'package:winenot/Utils/MyColors.dart';
 import 'package:http/http.dart' as http;
@@ -312,14 +313,17 @@ class WineInformationState extends State<WineInformation> {
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
 
-                                      Text(
-                                        reviews[index].name,
-                                        style: TextStyle(
-                                          color: Color(0xffECECEE),
-                                          fontWeight: FontWeight.w900,
-                                          fontSize: 20,
+                                      Flexible(
+                                        child: Text(
+                                          reviews[index].name,
+                                          style: TextStyle(
+                                            color: Color(0xffECECEE),
+                                            fontWeight: FontWeight.w900,
+                                            fontSize: 20,
+                                          ),
                                         ),
                                       ),
+
                                     ],
                                   ),
 
@@ -361,6 +365,7 @@ class WineInformationState extends State<WineInformation> {
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
+
                                       Flexible(
                                         child: Text(
                                           reviews[index].description,
@@ -371,6 +376,7 @@ class WineInformationState extends State<WineInformation> {
                                           ),
                                         ),
                                       ),
+
                                     ],
                                   ),
 
@@ -415,20 +421,24 @@ class WineInformationState extends State<WineInformation> {
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
 
-                                      Text(
-                                        comments[index].content,
-                                        style: TextStyle(
-                                          color: Color(0xffECECEE),
-                                          fontWeight: FontWeight.w900,
-                                          fontSize: 20,
+                                      Flexible(
+                                        child: Text(
+                                          comments[index].content,
+                                          style: TextStyle(
+                                            color: Color(0xffECECEE),
+                                            fontWeight: FontWeight.w900,
+                                            fontSize: 20,
+                                          ),
                                         ),
                                       ),
+
                                     ],
                                   ),
 
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
+
                                       Flexible(
                                         child: Text(
                                           comments[index].updated_at,
@@ -439,6 +449,7 @@ class WineInformationState extends State<WineInformation> {
                                           ),
                                         ),
                                       ),
+
                                     ],
                                   ),
 
@@ -449,29 +460,64 @@ class WineInformationState extends State<WineInformation> {
                         }),
                       ),
 
-                      // Add comment
-                      OutlineButton(
-                        color: Color(0xffECECEE),
-                        textColor: Color(0xffECECEE),
-                        highlightedBorderColor: Color(0xffECECEE),
-                        borderSide: BorderSide(
-                          color: Color(0xffECECEE),
-                        ),
-                        onPressed: () {
+                      Row(
+                        children: [
 
-                          print('Add comment');
+                          Padding(
+                            padding: EdgeInsets.only(
+                                right: 10
+                            ),
+                            child: OutlineButton(
+                              color: Color(0xffECECEE),
+                              textColor: Color(0xffECECEE),
+                              highlightedBorderColor: Color(0xffECECEE),
+                              borderSide: BorderSide(
+                                color: Color(0xffECECEE),
+                              ),
+                              onPressed: () {
 
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => AddComment(
-                                wine: widget.wine,
-                              ))
-                          );
+                                print('Add review');
 
-                        },
-                        child: Text(
-                          'Add comment',
-                        ),
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => AddReview(
+                                      wine: widget.wine,
+                                    ))
+                                );
+
+                              },
+                              child: Text(
+                                'Add review',
+                              ),
+                            ),
+                          ),
+
+                          // Add comment
+                          OutlineButton(
+                            color: Color(0xffECECEE),
+                            textColor: Color(0xffECECEE),
+                            highlightedBorderColor: Color(0xffECECEE),
+                            borderSide: BorderSide(
+                              color: Color(0xffECECEE),
+                            ),
+                            onPressed: () {
+
+                              print('Add comment');
+
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => AddComment(
+                                    wine: widget.wine,
+                                  ))
+                              );
+
+                            },
+                            child: Text(
+                              'Add comment',
+                            ),
+                          ),
+
+                        ],
                       ),
 
                     ],

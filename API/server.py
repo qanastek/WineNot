@@ -85,6 +85,9 @@ def find():
             
             # Draw the boxes on the image
             img = cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 2)
+ 
+    # Save the image
+    cv2.imwrite("images/tmp.jpg", img)
 
     # Content
     parse_text = []
@@ -102,6 +105,8 @@ def find():
         if (last_word != '' and word == '') or (word == details['text'][-1]):
             parse_text.append(word_list)
             word_list = []
+
+    print(parse_text)
 
     # Merge all the sublists into one list
     mergedList = []

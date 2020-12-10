@@ -7,6 +7,12 @@
 * `rails generate scaffold HighScore game:string score:integer`
 * `rails db:migrate`
 
+# Docker commands
+
+* `docker rm flask1`
+* `docker build -t winenot/flask:v1.3 .`
+* `docker run --name flask1 7e61ee43228e`
+
 # Structure
 
 * Changer l'ui des formulaires:

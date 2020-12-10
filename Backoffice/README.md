@@ -6,7 +6,7 @@
 # Docker commands
 
 * `docker rm flask1`
-* `docker build -t winenot/flask:v1.3 .`
+* `docker build -t winenot/rails:v1.0 .`
 * `docker run --name flask1 7e61ee43228e`
 
 # README

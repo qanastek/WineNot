@@ -8,8 +8,6 @@ WineNot is an easy to use app to let you find a wine according to it's label. On
 
 ## Architecture
 
-![Architecture](GithubAssets/Architecture.png)
-
 <p align="center">
   <img src="https://github.com/qanastek/WineNot/blob/master/GithubAssets/Architecture.jpg">
 </p>

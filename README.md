@@ -1,4 +1,14 @@
-# WineNot
+<p align="center">
+  <img src="GithubAssets/Logo.png" width="60%">
+</p>
+
+WineNot is an easy to use app to let you find a wine according to it's label. One step, Just can it !
+
+![Preview](GithubAssets/Preview.jpg)
+
+## Architecture
+
+![Architecture](GithubAssets/Architecture.png)
 
 ## Dependencies
 

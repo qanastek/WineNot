@@ -4,7 +4,7 @@
 
 WineNot is an easy to use app to let you find a wine according to it's label. One step, Just can it !
 
-![Preview](GithubAssets/Preview.jpg)
+![Preview](https://github.com/qanastek/WineNot/blob/master/GithubAssets/logo.png)
 
 ## Architecture
 

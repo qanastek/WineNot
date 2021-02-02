@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="GithubAssets/Logo.png" width="60%">
+  <img src="https://github.com/qanastek/WineNot/blob/master/GithubAssets/logo.png" width="60%">
 </p>
 
 WineNot is an easy to use app to let you find a wine according to it's label. One step, Just can it !
